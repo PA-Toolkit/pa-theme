@@ -1,6 +1,6 @@
 # pa-theme
 
-> A library for creating and editing [Project Arrhythmia](https://store.steampowered.com/app/440310/Project_Arrhythmia/) themes.
+A library for creating and editing [Project Arrhythmia](https://store.steampowered.com/app/440310/Project_Arrhythmia/) themes.
 
 ## Installation
 

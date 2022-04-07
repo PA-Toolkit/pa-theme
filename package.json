@@ -24,6 +24,10 @@
   ],
   "author": "enchart",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enchart/pa-theme"
+  },
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.18.0",

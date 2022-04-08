@@ -41,7 +41,7 @@ const theme = new Theme.json('{"name": "JsonTheme", "id": "000000"}');
 
 - Default ID is a randomly generated 6-digit long numeric string.
 - Default name of the theme is "Theme".
-- Default colors are either `#000000` or `#fffffff`, you can use CSS color strings for them.
+- Default colors are either `#000000` or `#ffffff`, you can use CSS color strings for them.
 
 ### Properties
 
@@ -54,10 +54,14 @@ theme.name; // "Theme"
 theme.gui.hex(); // "#FFFFFF"
 theme.bg.hex(); // "000000"
 
-theme.players.hex(); // ["#FFFFFF" x 4]
-theme.objs.hex(); // ["#FFFFFF" x 9]
-theme.bgs.hex(); // ["#000000" x 9]
+theme.players[3].hex(); // ["#FFFFFF"]
+theme.objs[8].hex(); // ["#FFFFFF"]
+theme.bgs[8].hex(); // ["#000000"]
 ```
+
+- `gui` and `bg` are Color objects
+- `players` is an array with 4 Color objects
+- `objs` and `bgs` are arrays with 9 Color objects
 
 All properties and getters for colors are inherited from [Color](https://www.npmjs.com/package/color) library.
 
@@ -68,7 +72,8 @@ theme.object(); // {id: "123456", name: "Theme", gui: "FFFFFF", ... }
 theme.json(); // "{"id": "123456", "name": "Theme", "gui": "FFFFFF", ... }"
 ```
 
-- `object()` converts all **Color** objects to hex color strings without `#` number sign that are compatible with Project Arrhythmia.
+- `object()` returns an object with all **Color** objects converted to hex color strings without `#` number sign that are compatible with Project Arrhythmia.
+- `json()` returns a string that can be used as a Project Arrhythmia theme.
 
 ### Default themes
 

@@ -7,7 +7,7 @@ import { HSL, RGB } from "./ColorSpaces";
 function rgbToHsl(rgb: RGB): HSL {
   if (isNaN(rgb.red) || isNaN(rgb.green) || isNaN(rgb.blue)) {
     throw new ColorParseError(
-      `Invalid RGB object: ${rgb.red}, ${rgb.green}, ${rgb.blue}`
+      `Invalid RGB object. The values are NaN: ${rgb.red}, ${rgb.green}, ${rgb.blue}`
     );
   }
 
@@ -57,7 +57,7 @@ function rgbToHsl(rgb: RGB): HSL {
 function hslToRgb(hsl: HSL): RGB {
   if (isNaN(hsl.hue) || isNaN(hsl.saturation) || isNaN(hsl.lightness)) {
     throw new ColorParseError(
-      `Invalid HSL object: ${hsl.hue}, ${hsl.saturation}, ${hsl.lightness}`
+      `Invalid HSL object. The values are NaN: ${hsl.hue}, ${hsl.saturation}, ${hsl.lightness}`
     );
   }
 
@@ -120,7 +120,7 @@ function hslToRgb(hsl: HSL): RGB {
 function rgbToHex(rgb: RGB): string {
   if (isNaN(rgb.red) || isNaN(rgb.green) || isNaN(rgb.blue)) {
     throw new ColorParseError(
-      `Invalid RGB object: ${rgb.red}, ${rgb.green}, ${rgb.blue}`
+      `Invalid RGB object. The values are NaN: ${rgb.red}, ${rgb.green}, ${rgb.blue}`
     );
   }
 
@@ -185,7 +185,9 @@ function validateHex(hex: string): string {
       newHex[0] + newHex[0] + newHex[1] + newHex[1] + newHex[2] + newHex[2]
     );
   } else {
-    throw new ColorParseError(`Invalid Hex string: ${hex}`);
+    throw new ColorParseError(
+      `Invalid Hex string. Length of Hex code must be 3 or 6: ${hex}`
+    );
   }
 }
 

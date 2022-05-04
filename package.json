@@ -33,11 +33,8 @@
     "rollup": "^2.71.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.31.2",
+    "rollup-plugin-ts": "^2.0.7",
     "tslib": "^2.4.0",
     "typescript": "^4.6.4"
-  },
-  "dependencies": {
-    "rollup-plugin-ts": "^2.0.7"
   }
 }

@@ -1,7 +1,7 @@
 import { Utils } from "../Utils";
 import { ColorParseError } from "./ColorParseError";
 import { HSL, RGB } from "./ColorSpaces";
-import { ColorUtils } from "./ColorUtils";
+import { ColorUtils } from "./Utils";
 
 /** The Color object of Project Arrhythmia theme. */
 export class Color {

@@ -4,12 +4,6 @@ import { ThemeColors } from "./ThemeColors";
 
 /**
  * Constructs a new theme.
- * @returns A new theme.
- */
-export function CreateTheme(): Theme;
-
-/**
- * Constructs a new theme.
  * @param name The theme's name.
  * @returns A new theme.
  */
@@ -23,7 +17,7 @@ export function CreateTheme(name: string): Theme;
  */
 export function CreateTheme(name: string, colors: ThemeColors): Theme;
 
-export function CreateTheme(name?: string, colors?: ThemeColors): Theme {
+export function CreateTheme(name: string, colors?: ThemeColors): Theme {
   return new Theme(name, colors);
 }
 

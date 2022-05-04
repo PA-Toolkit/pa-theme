@@ -1,2 +1,7 @@
+/*
+  Theme generator test.
+*/
+
 const { CreateTheme } = require("..");
-console.log(CreateTheme());
+
+const theme = CreateTheme("Theme");

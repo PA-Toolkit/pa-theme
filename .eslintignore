@@ -1,4 +1,4 @@
 node_modules
-lib
-webpack.config.js
-/tests
+/build
+rollup.config.js
+/test

@@ -117,7 +117,7 @@ export class Color {
   }
 
   public set hex(hex: string) {
-    this._hex = hex;
+    this._hex = ColorUtils.validateHex(hex);
     this._rgb = ColorUtils.hexToRgb(hex);
     this._hsl = ColorUtils.hexToHsl(hex);
   }
@@ -136,17 +136,11 @@ export class Color {
    */
   constructor(color: RGB | HSL | string) {
     if (typeof color === "string") {
-      this._rgb = ColorUtils.hexToRgb(color);
-      this._hsl = ColorUtils.rgbToHsl(this._rgb);
-      this._hex = color;
+      this.hex = color;
     } else if ("red" in color) {
-      this._rgb = color;
-      this._hsl = ColorUtils.rgbToHsl(this._rgb);
-      this._hex = ColorUtils.rgbToHex(this._rgb);
+      this.rgb = color;
     } else if ("hue" in color) {
-      this._hsl = color;
-      this._rgb = ColorUtils.hslToRgb(this._hsl);
-      this._hex = ColorUtils.rgbToHex(this._rgb);
+      this.hsl = color;
     } else {
       throw new ColorParseError("Invalid color.");
     }

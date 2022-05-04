@@ -171,6 +171,24 @@ function hexToHsl(hex: string): HSL {
   return rgbToHsl(hexToRgb(hex));
 }
 
+function validateHex(hex: string): string {
+  let newHex = hex;
+
+  if (newHex.startsWith("#")) {
+    newHex = newHex.substring(1);
+  }
+  if (newHex.length === 6) {
+    return newHex;
+  }
+  if (newHex.length === 3) {
+    return (
+      newHex[0] + newHex[0] + newHex[1] + newHex[1] + newHex[2] + newHex[2]
+    );
+  } else {
+    throw new ColorParseError(`Invalid Hex string: ${hex}`);
+  }
+}
+
 /**
  * Utility functions for working with colors.
  */
@@ -216,6 +234,13 @@ export interface ColorUtils {
    * @returns A HSL object.
    */
   hexToHsl(hex: string): HSL;
+
+  /**
+   * Validates a Hex string.
+   * @param hex A Hex string.
+   * @returns A validated Hex string.
+   */
+  validateHex(hex: string): string;
 }
 
 export const ColorUtils: ColorUtils = {
@@ -225,4 +250,5 @@ export const ColorUtils: ColorUtils = {
   hexToRgb,
   hslToHex,
   hexToHsl,
+  validateHex,
 };

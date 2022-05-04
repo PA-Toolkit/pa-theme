@@ -31,12 +31,12 @@ export class Theme implements Serializable {
   /**
    * Theme's 4 colors for players.
    */
-  players: Color[] = CreateColors(["E57373", "64B5F6", "81C784", "FFB74D"]);
+  players: Color[] = CreateColors("E57373", "64B5F6", "81C784", "FFB74D");
 
   /**
    * Theme's 9 colors for objects.
    */
-  objects: Color[] = CreateColors([
+  objects: Color[] = CreateColors(
     "F5F5F5",
     "EEEEEE",
     "E0E0E0",
@@ -45,13 +45,13 @@ export class Theme implements Serializable {
     "757575",
     "616161",
     "424242",
-    "212121",
-  ]);
+    "212121"
+  );
 
   /**
    * Theme's 9 colors for background objects.
    */
-  backgroundObjects: Color[] = CreateColors([
+  backgroundObjects: Color[] = CreateColors(
     "F8BBD0",
     "F48FB1",
     "F06292",
@@ -60,8 +60,8 @@ export class Theme implements Serializable {
     "D81B60",
     "C2185B",
     "AD1457",
-    "880E4F",
-  ]);
+    "880E4F"
+  );
 
   toJson(): SerializedTheme {
     return {

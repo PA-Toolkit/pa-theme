@@ -1,5 +1,6 @@
-import typescript from "rollup-plugin-typescript2";
+import ts from "rollup-plugin-ts";
 import del from "rollup-plugin-delete";
+import { terser } from "rollup-plugin-terser";
 
 export default {
   input: "src/index.ts",
@@ -9,9 +10,10 @@ export default {
     format: "umd",
   },
   plugins: [
-    typescript(),
+    ts(),
     del({
       targets: ["build"],
     }),
+    terser(),
   ],
 };

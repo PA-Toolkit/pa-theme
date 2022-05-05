@@ -1,4 +1,3 @@
-import { Utils } from "../Utils";
 import { ColorParseError } from "./ColorParseError";
 import { HSL, RGB } from "./ColorSpaces";
 

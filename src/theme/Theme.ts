@@ -1,4 +1,4 @@
-import { Utils } from "./../Utils";
+import { ThemeUtils } from "../ThemeUtils";
 import { Color, CreateColor, CreateColors } from "../color";
 import { Serializable } from "pa-common";
 
@@ -114,7 +114,7 @@ export class Theme implements Serializable {
    * @param json A json object.
    */
   constructor(json: any) {
-    this.id = Utils.randomThemeId();
+    this.id = ThemeUtils.randomThemeId();
     this.fromJson(json);
   }
 }

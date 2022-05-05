@@ -156,6 +156,22 @@ color.hex; // "FFFFFF"
 color.toString(); // "#FFFFFF"
 ```
 
+Converting colors:
+
+```js
+const { ColorUtils } = require("pa-theme");
+const rgb = {
+  r: 255,
+  g: 255,
+  b: 255,
+};
+const hsl = ColorUtils.rgbToHsl(rgb);
+const newRgb = ColorUtils.hslToRgb(hsl);
+
+rgb; // { r: 255, g: 255, b: 255 }
+newRgb; // { r: 255, g: 255, b: 255 }
+```
+
 ### Building the theme
 
 You can convert the theme to a JSON string/object, then write it to a file.

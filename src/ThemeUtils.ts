@@ -1,3 +1,5 @@
+import { Utils } from "pa-common";
+
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
@@ -5,7 +7,7 @@ function clamp(value: number, min: number, max: number): number {
 function randomThemeId(): string {
   let id = "";
   for (let i = 0; i < 6; i++) {
-    id += Math.floor(Math.random() * 10);
+    id += Utils.randInt(10);
   }
   return id;
 }
@@ -13,7 +15,7 @@ function randomThemeId(): string {
 /**
  * Utility functions for working with themes.
  */
-export interface Utils {
+export interface ThemeUtils {
   /**
    * Clamps a number to the range between min and max values.
    * @param value The value to clamp.
@@ -30,7 +32,7 @@ export interface Utils {
   randomThemeId(): string;
 }
 
-export const Utils: Utils = {
+export const ThemeUtils: ThemeUtils = {
   clamp,
   randomThemeId,
 };

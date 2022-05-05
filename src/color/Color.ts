@@ -1,7 +1,7 @@
-import { Utils } from "../Utils";
+import { ThemeUtils } from "../ThemeUtils";
 import { ColorParseError } from "./ColorParseError";
 import { HSL, RGB } from "./ColorSpaces";
-import { ColorUtils } from "./Utils";
+import { ColorUtils } from "./ColorUtils";
 
 /** The Color object of Project Arrhythmia theme. */
 export class Color {
@@ -21,9 +21,9 @@ export class Color {
   }
 
   public set rgb(rgb: RGB) {
-    this.red = Utils.clamp(rgb.red, 0, 255);
-    this.green = Utils.clamp(rgb.green, 0, 255);
-    this.blue = Utils.clamp(rgb.blue, 0, 255);
+    this.red = ThemeUtils.clamp(rgb.red, 0, 255);
+    this.green = ThemeUtils.clamp(rgb.green, 0, 255);
+    this.blue = ThemeUtils.clamp(rgb.blue, 0, 255);
   }
 
   /**
@@ -34,7 +34,7 @@ export class Color {
   }
 
   public set red(red: number) {
-    this._r = Utils.clamp(red, 0, 255);
+    this._r = ThemeUtils.clamp(red, 0, 255);
   }
 
   /**
@@ -45,7 +45,7 @@ export class Color {
   }
 
   public set green(green: number) {
-    this._g = Utils.clamp(green, 0, 255);
+    this._g = ThemeUtils.clamp(green, 0, 255);
   }
 
   /**
@@ -56,7 +56,7 @@ export class Color {
   }
 
   public set blue(blue: number) {
-    this._b = Utils.clamp(blue, 0, 255);
+    this._b = ThemeUtils.clamp(blue, 0, 255);
   }
 
   /**
@@ -79,7 +79,7 @@ export class Color {
 
   public set hue(hue: number) {
     const hsl = ColorUtils.rgbToHsl(this.rgb);
-    hsl.hue = Utils.clamp(hue, 0, 360);
+    hsl.hue = ThemeUtils.clamp(hue, 0, 360);
     this.rgb = ColorUtils.hslToRgb(hsl);
   }
 
@@ -92,7 +92,7 @@ export class Color {
 
   public set saturation(saturation: number) {
     const hsl = ColorUtils.rgbToHsl(this.rgb);
-    hsl.saturation = Utils.clamp(saturation, 0, 100);
+    hsl.saturation = ThemeUtils.clamp(saturation, 0, 100);
     this.rgb = ColorUtils.hslToRgb(hsl);
   }
 
@@ -105,7 +105,7 @@ export class Color {
 
   public set lightness(lightness: number) {
     const hsl = ColorUtils.rgbToHsl(this.rgb);
-    hsl.lightness = Utils.clamp(lightness, 0, 100);
+    hsl.lightness = ThemeUtils.clamp(lightness, 0, 100);
     this.rgb = ColorUtils.hslToRgb(hsl);
   }
 

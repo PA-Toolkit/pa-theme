@@ -7,9 +7,12 @@ const production = process.env.BUILD === "production";
 export default {
   input: "src/index.ts",
   output: {
-    name: "PATheme",
     dir: "build",
+    name: "PATheme",
     format: "umd",
+    globals: {
+      "pa-common": "PACommon",
+    },
   },
   plugins: [
     ts(),
@@ -18,4 +21,5 @@ export default {
     }),
     production && terser(),
   ],
+  external: ["pa-common"],
 };

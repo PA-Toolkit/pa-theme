@@ -21,13 +21,13 @@
   ],
   "author": "enchart",
   "license": "MIT",
-  "homepage": "https://github.com/enchart/pa-theme",
+  "homepage": "https://github.com/PA-Toolkit/pa-theme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enchart/pa-theme"
+    "url": "git+https://github.com/PA-Toolkit/pa-theme"
   },
   "bugs": {
-    "url": "https://github.com/enchart/pa-theme/issues"
+    "url": "https://github.com/PA-Toolkit/pa-theme/issues"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.18.0",

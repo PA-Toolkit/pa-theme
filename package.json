@@ -21,13 +21,13 @@
   ],
   "author": "enchart",
   "license": "MIT",
-  "homepage": "https://github.com/PA-Toolkit/pa-prefab#readme",
+  "homepage": "https://github.com/enchart/pa-theme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enchart/pa-theme"
   },
   "bugs": {
-    "url": "https://github.com/PA-Toolkit/pa-prefab/issues"
+    "url": "https://github.com/enchart/pa-theme/issues"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.18.0",

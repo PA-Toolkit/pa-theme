@@ -1,86 +1,197 @@
-# pa-theme
+<h1 align="center">Welcome to pa-theme 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/pa-theme" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/pa-theme.svg">
+  </a>
+  <a href="https://github.com/enchart/pa-theme#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/enchart/pa-theme/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/enchart/pa-theme/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/enchart/pa-theme" />
+  </a>
+</p>
 
-A library for creating and editing [Project Arrhythmia](https://store.steampowered.com/app/440310/Project_Arrhythmia/) themes.
+> Creates and edits Project Arrhythmia themes.
 
-## Installation
+### 🏠 [Homepage](https://github.com/enchart/pa-prefab)
 
-Using **npm**:
+## Install
 
-```console
-npm install pa-theme --save-dev
-```
-
-Using **yarn**:
-
-```console
-yarn add -D pa-theme
+```sh
+npm install pa-theme
 ```
 
 ## Usage
 
-### Adding to script
-
-```cjs
-const Theme = require("pa-theme");
+```js
+import { CreateTheme, CreateColor, ... } from "pa-theme";
 ```
-
-or
 
 ```js
-import Theme from "pa-theme";
+const { CreateTheme, CreateColor, ... } = require("pa-theme");
 ```
 
-### Constructors
+### Creating a theme
+
+You can create a theme:
+
+- With default colors
 
 ```js
-const theme = Theme("Theme");
-const theme = new Theme("Red", "#FF0000", "#000000");
-const theme = Theme({ name: "Blue", bg: "#7F7F7F" });
-const theme = new Theme.json('{"name": "JsonTheme", "id": "000000"}');
+const theme = CreateTheme("Theme");
 ```
 
-- Default ID is a randomly generated 6-digit long numeric string.
-- Default name of the theme is "Theme".
-- Default colors are either `#000000` or `#ffffff`, you can use CSS color strings for them.
-
-### Properties
-
-#### Colors
+- With specified colors
 
 ```js
-theme.id; // "123456"
-theme.name; // "Theme"
-
-theme.gui.hex(); // "#FFFFFF"
-theme.bg.hex(); // "000000"
-
-theme.players[3].hex(); // ["#FFFFFF"]
-theme.objs[8].hex(); // ["#FFFFFF"]
-theme.bgs[8].hex(); // ["#000000"]
+const theme = CreateTheme("Theme", {
+  gui: "#FFFFFF",
+  background: {
+    red: 0,
+    green: 0,
+    blue: 0,
+  },
+});
 ```
 
-- `gui` and `bg` are Color objects
-- `players` is an array with 4 Color objects
-- `objs` and `bgs` are arrays with 9 Color objects
+### Creating a color
 
-All properties and getters for colors are inherited from [Color](https://www.npmjs.com/package/color) library.
+You can create a color from:
 
-#### Theme
+- A Hex string
 
 ```js
-theme.object(); // {id: "123456", name: "Theme", gui: "FFFFFF", ... }
-theme.json(); // "{"id": "123456", "name": "Theme", "gui": "FFFFFF", ... }"
+const color = CreateColor("#FFFFFF");
+const color = CreateColor("#fff");
+const color = CreateColor("FFFFFF");
 ```
 
-- `object()` returns an object with all **Color** objects converted to hex color strings without `#` number sign that are compatible with Project Arrhythmia.
-- `json()` returns a string that can be used as a Project Arrhythmia theme.
-
-### Default themes
-
-The library provides 9 default themes from Project Arrhythmia's level editor.
+- A RGB object
 
 ```js
-Theme.default.machine(); // {name: "Machine", id: "123456", ...}
-Theme.default.anarchy("Different name"); // {name: "Different name", id: "123456", ...}
-Theme.default.dayNight("Different name", "000000"); // {name: "Different name", id: "000000", ...}
+const color = CreateColor({
+  red: 255,
+  green: 255,
+  blue: 255,
+});
 ```
+
+- A HSL object
+
+```js
+const color = CreateColor({
+  hue: 0,
+  saturation: 0,
+  lightness: 100,
+});
+```
+
+Creating multiple colors:
+
+```js
+const colors = CreateColors(
+  "#FFFFFF",
+  "fff",
+  {
+    red: 255,
+    green: 255,
+    blue: 255,
+  },
+  ...
+);
+```
+
+### Working with the theme
+
+Setting the theme's name
+
+```js
+theme.name = "Theme";
+```
+
+Setting the theme's colors
+
+```js
+theme.gui = CreateColor("#FFFFFF");
+theme.objects = CreateColors("#ff0000", "#ffa200", "#bfff00", ... );
+```
+
+### Working with the color
+
+Setting the color's RGB values.
+
+```js
+color.red = 255;
+color.rgb = {
+  red: 255,
+  green: 255,
+  blue: 255,
+};
+```
+
+Setting the color's HSL values.
+
+```js
+color.hue = 0;
+color.hsl = {
+  hue: 0,
+  saturation: 0,
+  value: 100,
+};
+```
+
+Setting the color's Hex string.
+
+```js
+color.hex = "#FFFFFF";
+```
+
+Getting the color's Hex string.
+
+```js
+color.hex; // "FFFFFF"
+color.toString(); // "#FFFFFF"
+```
+
+### Building the theme
+
+You can convert the theme to a JSON string/object, then write it to a file.
+
+```js
+const fs = require("fs");
+
+fs.writeFileSync("theme.lst", theme.toString());
+```
+
+### Reading the theme
+
+You can read an existing theme from the string/object.
+
+```js
+const { CreateThemeFromJson } = require("pa-theme");
+const fs = require("fs");
+
+const jsonString = fs.readFileSync("theme.lst");
+const json = JSON.parse(jsonString);
+const theme = CreateThemeFromJson(json);
+```
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/enchart/pa-prefab/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2022 [PA Toolkit](https://github.com/pa-toolkit).<br />
+This project is [MIT](https://github.com/enchart/pa-theme/blob/master/LICENSE) licensed.
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

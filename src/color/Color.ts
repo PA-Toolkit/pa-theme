@@ -1,5 +1,5 @@
 import { ThemeUtils } from "../ThemeUtils";
-import { ColorParseError } from "./ColorParseError";
+import { ColorParseError } from "./Errors";
 import { HSL, RGB } from "./ColorSpaces";
 import { ColorUtils } from "./ColorUtils";
 

@@ -1,6 +1,7 @@
 import { ThemeUtils } from "../ThemeUtils";
 import { Color, CreateColor, CreateColors } from "../color";
 import { Serializable } from "pa-common";
+import { ThemeParseError } from "./Errors";
 
 /**
  * The theme, the base of the library.
@@ -81,26 +82,61 @@ export class Theme implements Serializable {
       this.gui = CreateColor(json.gui);
     }
 
+    if (json.bg !== undefined && json.background !== undefined) {
+      throw new ThemeParseError(
+        `Theme has both bg and background fields: ${json.bg}, ${json.background}`
+      );
+    }
+
     if (json.bg !== undefined) {
       this.background = CreateColor(json.bg);
     }
 
+    if (json.background !== undefined) {
+      this.background = CreateColor(json.background);
+    }
+
     if (json.players !== undefined) {
-      for (let i = 0; i < this.players.length; i++) {
+      for (let i = 0; i < 4; i++) {
         this.players[i] = CreateColor(json.players[i]) || this.players[i];
       }
     }
 
+    if (json.objs !== undefined && json.objects !== undefined) {
+      throw new ThemeParseError(
+        `Theme has both objs and objects fields: ${json.objs}, ${json.objects}`
+      );
+    }
+
     if (json.objs !== undefined) {
-      for (let i = 0; i < this.objects.length; i++) {
+      for (let i = 0; i < 9; i++) {
         this.objects[i] = CreateColor(json.objs[i]) || this.objects[i];
       }
     }
 
+    if (json.objects !== undefined) {
+      for (let i = 0; i < 9; i++) {
+        this.objects[i] = CreateColor(json.objects[i]) || this.objects[i];
+      }
+    }
+
+    if (json.bgs !== undefined && json.backgroundObjects !== undefined) {
+      throw new ThemeParseError(
+        `Theme has both bgs and backgroundObjects fields: ${json.bgs}, ${json.backgroundObjects}`
+      );
+    }
+
     if (json.bgs !== undefined) {
-      for (let i = 0; i < this.backgroundObjects.length; i++) {
+      for (let i = 0; i < 9; i++) {
         this.backgroundObjects[i] =
           CreateColor(json.bgs[i]) || this.backgroundObjects[i];
+      }
+    }
+
+    if (json.backgroundObjects !== undefined) {
+      for (let i = 0; i < 9; i++) {
+        this.backgroundObjects[i] =
+          CreateColor(json.backgroundObjects[i]) || this.backgroundObjects[i];
       }
     }
   }

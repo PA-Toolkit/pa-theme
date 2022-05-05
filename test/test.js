@@ -7,11 +7,13 @@ const {
   CreateColor,
   CreateColors,
   CreateThemeFromJson,
+  Theme,
 } = require("..");
 const fs = require("fs");
 
 // Create new theme, leave unassigned colors to default.
-const theme = CreateTheme("Rainbow", {
+const theme = CreateTheme({
+  name: "Rainbow",
   gui: "FFFFFF",
   players: [
     "#E57373",
@@ -64,3 +66,5 @@ console.log(
     ? "Test passed!"
     : "Test failed!"
 );
+
+console.log(CreateTheme({ name: "Test", gui: "7F7F7F" }));

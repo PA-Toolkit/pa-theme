@@ -44,10 +44,16 @@ You can create a theme:
 const theme = CreateTheme("Theme");
 ```
 
+```js
+const theme = CreateTheme({
+  name: "Theme",
+});
+```
+
 - With specified colors
 
 ```js
-const theme = CreateTheme("Theme", {
+const theme = CreateTheme({
   gui: "#FFFFFF",
   background: {
     red: 0,
@@ -56,6 +62,8 @@ const theme = CreateTheme("Theme", {
   },
 });
 ```
+
+NOTE: You can only use either short or long property (e.g. either `bg` or `background`) in a single constructor object.
 
 ### Creating a color
 

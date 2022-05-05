@@ -1,4 +1,4 @@
-import { ColorParseError } from "./ColorParseError";
+import { ColorParseError } from "./Errors";
 import { HSL, RGB } from "./ColorSpaces";
 
 // Color conversion functions from "color-convert" package.

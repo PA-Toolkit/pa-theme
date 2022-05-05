@@ -1,8 +1,6 @@
 import { Utils } from "./../Utils";
-import { ThemeColors } from "./ThemeColors";
 import { Color, CreateColor, CreateColors } from "../color";
-import { Serializable } from "../Serializable";
-import { SerializedTheme } from "./SerializedTheme";
+import { Serializable } from "pa-common";
 
 /**
  * The theme, the base of the library.
@@ -63,7 +61,7 @@ export class Theme implements Serializable {
     "880E4F"
   );
 
-  toJson(): SerializedTheme {
+  toJson(): any {
     return {
       id: this.id,
       name: this.name,
@@ -75,42 +73,48 @@ export class Theme implements Serializable {
     };
   }
 
+  fromJson(json: any) {
+    if (json.name !== undefined) {
+      this.name = json.name;
+    }
+    if (json.gui !== undefined) {
+      this.gui = CreateColor(json.gui);
+    }
+
+    if (json.bg !== undefined) {
+      this.background = CreateColor(json.bg);
+    }
+
+    if (json.players !== undefined) {
+      for (let i = 0; i < this.players.length; i++) {
+        this.players[i] = CreateColor(json.players[i]) || this.players[i];
+      }
+    }
+
+    if (json.objs !== undefined) {
+      for (let i = 0; i < this.objects.length; i++) {
+        this.objects[i] = CreateColor(json.objs[i]) || this.objects[i];
+      }
+    }
+
+    if (json.bgs !== undefined) {
+      for (let i = 0; i < this.backgroundObjects.length; i++) {
+        this.backgroundObjects[i] =
+          CreateColor(json.bgs[i]) || this.backgroundObjects[i];
+      }
+    }
+  }
+
   toString(): string {
     return JSON.stringify(this.toJson());
   }
 
   /**
    * Constructs a new theme.
-   * @param name The theme's name.
-   * @param colors The theme's colors.
+   * @param json A json object.
    */
-  constructor(name?: string, colors?: ThemeColors) {
+  constructor(json: any) {
     this.id = Utils.randomThemeId();
-    if (name) this.name = name;
-    if (colors) {
-      if (colors.background) {
-        this.background = CreateColor(colors.background);
-      }
-      if (colors.gui) {
-        this.gui = CreateColor(colors.gui);
-      }
-      if (colors.players) {
-        for (let i = 0; i < this.players.length; i++) {
-          this.players[i] = CreateColor(colors.players[i]) || this.players[i];
-        }
-      }
-      if (colors.objects) {
-        for (let i = 0; i < this.objects.length; i++) {
-          this.objects[i] = CreateColor(colors.objects[i]) || this.objects[i];
-        }
-      }
-      if (colors.backgroundObjects) {
-        for (let i = 0; i < this.backgroundObjects.length; i++) {
-          this.backgroundObjects[i] =
-            CreateColor(colors.backgroundObjects[i]) ||
-            this.backgroundObjects[i];
-        }
-      }
-    }
+    this.fromJson(json);
   }
 }

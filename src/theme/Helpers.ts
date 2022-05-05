@@ -1,4 +1,3 @@
-import { SerializedTheme } from "./SerializedTheme";
 import { Theme } from "./Theme";
 import { ThemeColors } from "./ThemeColors";
 
@@ -18,7 +17,7 @@ export function CreateTheme(name: string): Theme;
 export function CreateTheme(name: string, colors: ThemeColors): Theme;
 
 export function CreateTheme(name: string, colors?: ThemeColors): Theme {
-  return new Theme(name, colors);
+  return new Theme({ name, ...colors });
 }
 
 /**
@@ -26,12 +25,6 @@ export function CreateTheme(name: string, colors?: ThemeColors): Theme {
  * @param json A JSON object.
  * @returns A new theme.
  */
-export function CreateThemeFromJson(json: SerializedTheme): Theme {
-  return CreateTheme(json.name, {
-    gui: json.gui,
-    background: json.bg,
-    players: json.players,
-    objects: json.objs,
-    backgroundObjects: json.bgs,
-  });
+export function CreateThemeFromJson(json: any): Theme {
+  return new Theme(json);
 }

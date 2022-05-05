@@ -16,8 +16,16 @@ export function CreateTheme(name: string): Theme;
  */
 export function CreateTheme(name: string, colors: ThemeColors): Theme;
 
+// TODO: Replace ThemeColors with something else
 export function CreateTheme(name: string, colors?: ThemeColors): Theme {
-  return new Theme({ name, ...colors });
+  return new Theme({
+    name,
+    gui: colors.gui,
+    bg: colors.background,
+    players: colors.players,
+    objs: colors.objects,
+    bgs: colors.backgroundObjects,
+  });
 }
 
 /**

@@ -1,2 +1,3 @@
-import Theme from "./interfaces/theme";
-export = Theme;
+export * from "./color";
+export * from "./theme";
+export * from "./ThemeUtils";

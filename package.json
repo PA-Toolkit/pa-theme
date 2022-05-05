@@ -1,21 +1,18 @@
 {
   "name": "pa-theme",
-  "version": "1.0.1",
-  "description": "A library for creating and editing Project Arrhythmia themes.",
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "version": "2.0.0",
+  "description": "Creates and edits Project Arrhythmia themes.",
+  "main": "build/index.js",
   "scripts": {
-    "dev": "webpack --mode=development",
-    "prod": "webpack --mode=production",
-    "dev:watch": "webpack --mode=development --watch",
-    "prod:watch": "webpack --mode=production --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c",
+    "test": "node test/test.js",
+    "pretest": "npm run build",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "test": "jest --config ./jest.config.json"
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
   "files": [
-    "lib/**/*"
+    "build/**/*"
   ],
   "keywords": [
     "pa",
@@ -24,26 +21,28 @@
   ],
   "author": "enchart",
   "license": "MIT",
+  "homepage": "https://github.com/enchart/pa-theme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enchart/pa-theme"
   },
+  "bugs": {
+    "url": "https://github.com/enchart/pa-theme/issues"
+  },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
-    "jest": "^27.5.1",
     "prettier": "^2.6.2",
-    "ts-jest": "^27.1.4",
-    "ts-loader": "^9.2.8",
-    "typescript": "^4.6.3",
-    "webpack": "^5.71.0",
-    "webpack-cli": "^4.9.2"
+    "rollup": "^2.71.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.7",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@types/color": "^3.0.3",
-    "color": "^4.2.3"
+    "pa-common": "^1.0.0"
   }
 }

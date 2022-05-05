@@ -5,121 +5,119 @@ import { ColorUtils } from "./Utils";
 
 /** The Color object of Project Arrhythmia theme. */
 export class Color {
-  private _rgb: RGB;
-  private _hsl: HSL;
-  private _hex: string;
+  private _r: number;
+  private _g: number;
+  private _b: number;
 
   /**
    * A RGB object of the color.
    */
   public get rgb(): RGB {
-    return this._rgb;
+    return {
+      red: this._r,
+      green: this._g,
+      blue: this._b,
+    };
   }
 
   public set rgb(rgb: RGB) {
-    this._rgb = {
-      red: Utils.clamp(rgb.red, 0, 255),
-      green: Utils.clamp(rgb.green, 0, 255),
-      blue: Utils.clamp(rgb.blue, 0, 255),
-    };
-    this._hsl = ColorUtils.rgbToHsl(this._rgb);
-    this._hex = ColorUtils.rgbToHex(this._rgb);
+    this.red = Utils.clamp(rgb.red, 0, 255);
+    this.green = Utils.clamp(rgb.green, 0, 255);
+    this.blue = Utils.clamp(rgb.blue, 0, 255);
   }
 
   /**
    * Red component of the color.
    */
   public get red(): number {
-    return this._rgb.red;
+    return this._r;
   }
 
   public set red(red: number) {
-    this.rgb = { ...this._rgb, red };
+    this._r = Utils.clamp(red, 0, 255);
   }
 
   /**
    * Green component of the color.
    */
   public get green(): number {
-    return this._rgb.green;
+    return this._g;
   }
 
   public set green(green: number) {
-    this.rgb = { ...this._rgb, green };
+    this._g = Utils.clamp(green, 0, 255);
   }
 
   /**
    * Blue component of the color.
    */
   public get blue(): number {
-    return this._rgb.blue;
+    return this._b;
   }
 
   public set blue(blue: number) {
-    this.rgb = { ...this._rgb, blue };
+    this._b = Utils.clamp(blue, 0, 255);
   }
 
   /**
    * A HSL object of the color.
    */
   public get hsl(): HSL {
-    return this._hsl;
+    return ColorUtils.rgbToHsl(this.rgb);
   }
 
   public set hsl(hsl: HSL) {
-    this._hsl = {
-      hue: Utils.clamp(hsl.hue, 0, 360),
-      saturation: Utils.clamp(hsl.saturation, 0, 100),
-      lightness: Utils.clamp(hsl.lightness, 0, 100),
-    };
-    this._rgb = ColorUtils.hslToRgb(this._hsl);
-    this._hex = ColorUtils.hslToHex(this._hsl);
+    this.rgb = ColorUtils.hslToRgb(hsl);
   }
 
   /**
    * Hue component of the color.
    */
   public get hue(): number {
-    return this._hsl.hue;
+    return ColorUtils.rgbToHsl(this.rgb).hue;
   }
 
   public set hue(hue: number) {
-    this.hsl = { ...this._hsl, hue };
+    const hsl = ColorUtils.rgbToHsl(this.rgb);
+    hsl.hue = Utils.clamp(hue, 0, 360);
+    this.rgb = ColorUtils.hslToRgb(hsl);
   }
 
   /**
    * Saturation component of the color.
    */
   public get saturation(): number {
-    return this._hsl.saturation;
+    return ColorUtils.rgbToHsl(this.rgb).saturation;
   }
 
   public set saturation(saturation: number) {
-    this.hsl = { ...this._hsl, saturation };
+    const hsl = ColorUtils.rgbToHsl(this.rgb);
+    hsl.saturation = Utils.clamp(saturation, 0, 100);
+    this.rgb = ColorUtils.hslToRgb(hsl);
   }
 
   /**
    * Lightness component of the color.
    */
   public get lightness(): number {
-    return this._hsl.lightness;
+    return ColorUtils.rgbToHsl(this.rgb).lightness;
   }
 
   public set lightness(lightness: number) {
-    this.hsl = { ...this._hsl, lightness };
+    const hsl = ColorUtils.rgbToHsl(this.rgb);
+    hsl.lightness = Utils.clamp(lightness, 0, 100);
+    this.rgb = ColorUtils.hslToRgb(hsl);
   }
 
   /**
    * Hex string of the color.
    */
   public get hex(): string {
-    return this._hex;
+    return ColorUtils.rgbToHex(this.rgb);
   }
 
   public set hex(hex: string) {
-    this._hex = ColorUtils.validateHex(hex);
-    this._rgb = ColorUtils.hexToRgb(hex);
-    this._hsl = ColorUtils.hexToHsl(hex);
+    this.rgb = ColorUtils.hexToRgb(ColorUtils.validateHex(hex));
   }
 
   /**
@@ -127,14 +125,14 @@ export class Color {
    * @returns A Hex string with the `#` prefix.
    */
   public toString(): string {
-    return `#${this._hex}`;
+    return `#${this.hex}`;
   }
 
   /**
    * Constructs a new color.
    * @param color A RGB or HSL color object or a Hex color string.
    */
-  constructor(color: RGB | HSL | string) {
+  constructor(color: any) {
     if (typeof color === "string") {
       this.hex = color;
     } else if ("red" in color) {
@@ -142,7 +140,7 @@ export class Color {
     } else if ("hue" in color) {
       this.hsl = color;
     } else {
-      throw new ColorParseError("Invalid color.");
+      throw new ColorParseError(`Invalid color: ${color}`);
     }
   }
 }

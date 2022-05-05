@@ -15,6 +15,7 @@ export interface RGB {
    */
   blue: number;
 }
+
 /**
  * The HSL object.
  */

@@ -1,3 +1,4 @@
+import { HSL, RGB } from "../color";
 import { ThemeUtils } from "../ThemeUtils";
 import { Color, CreateColor, CreateColors } from "../color";
 import { Serializable } from "pa-common";
@@ -7,35 +8,17 @@ import { ThemeParseError } from "./Errors";
  * The theme, the base of the library.
  */
 export class Theme implements Serializable {
-  /**
-   * The theme's ID. This value is chosen randomly. This field is read-only.
-   */
-  readonly id: string;
-
-  /**
-   * The theme's name. This will be visible in the Project Arrhythmia Editor.
-   */
-  name = "New Theme";
-
-  /**
-   * Theme's GUI color, the color of progress bar and trails of the players.
-   */
-  gui: Color = CreateColor("FFFFFF");
-
-  /**
-   * Theme's background color, the color of level background.
-   */
-  background: Color = CreateColor("212121");
-
-  /**
-   * Theme's 4 colors for players.
-   */
-  players: Color[] = CreateColors("E57373", "64B5F6", "81C784", "FFB74D");
-
-  /**
-   * Theme's 9 colors for objects.
-   */
-  objects: Color[] = CreateColors(
+  private _id: string;
+  private _name = "New Theme";
+  private _gui: Color = CreateColor("FFFFFF");
+  private _background: Color = CreateColor("212121");
+  private _players: Color[] = CreateColors(
+    "E57373",
+    "64B5F6",
+    "81C784",
+    "FFB74D"
+  );
+  private _objects: Color[] = CreateColors(
     "F5F5F5",
     "EEEEEE",
     "E0E0E0",
@@ -46,11 +29,7 @@ export class Theme implements Serializable {
     "424242",
     "212121"
   );
-
-  /**
-   * Theme's 9 colors for background objects.
-   */
-  backgroundObjects: Color[] = CreateColors(
+  private _backgroundObjects: Color[] = CreateColors(
     "F8BBD0",
     "F48FB1",
     "F06292",
@@ -62,15 +41,88 @@ export class Theme implements Serializable {
     "880E4F"
   );
 
+  /**
+   * The theme's ID. This value is chosen randomly. This field is read-only.
+   */
+  public get id(): string {
+    return this._id;
+  }
+
+  /**
+   * The theme's name. This will be visible in the Project Arrhythmia Editor.
+   */
+  public get name(): string {
+    return this._name;
+  }
+
+  public set name(value: string) {
+    this._name = value;
+  }
+
+  /**
+   * Theme's GUI color, the color of progress bar and trails of the players.
+   */
+  public get gui(): Color {
+    return this._gui;
+  }
+
+  public set gui(value: RGB | HSL | string | Color) {
+    this._gui = CreateColor(value);
+  }
+
+  /**
+   * Theme's background color, the color of level background.
+   */
+  public get background(): Color {
+    return this._background;
+  }
+
+  public set background(value: RGB | HSL | string | Color) {
+    this._background = CreateColor(value);
+  }
+
+  /**
+   * Theme's 4 colors for players.
+   */
+  public get players(): Color[] {
+    return this._players;
+  }
+
+  public set players(value: (RGB | HSL | string | Color)[]) {
+    this._players = CreateColors(...value);
+  }
+
+  /**
+   * Theme's 9 colors for objects.
+   */
+  public get objects(): Color[] {
+    return this._objects;
+  }
+
+  public set objects(value: (RGB | HSL | string | Color)[]) {
+    this._objects = CreateColors(...value);
+  }
+
+  /**
+   * Theme's 9 colors for background objects.
+   */
+  public get backgroundObjects(): Color[] {
+    return this._backgroundObjects;
+  }
+
+  public set backgroundObjects(value: (RGB | HSL | string | Color)[]) {
+    this._backgroundObjects = CreateColors(...value);
+  }
+
   toJson(): any {
     return {
-      id: this.id,
-      name: this.name,
-      gui: this.gui.hex,
-      bg: this.background.hex,
-      players: this.players.map((c) => c.hex),
-      objs: this.objects.map((c) => c.hex),
-      bgs: this.backgroundObjects.map((c) => c.hex),
+      id: this._id,
+      name: this._name,
+      gui: this._gui.hex,
+      bg: this._background.hex,
+      players: this._players.map((c) => c.hex),
+      objs: this._objects.map((c) => c.hex),
+      bgs: this._backgroundObjects.map((c) => c.hex),
     };
   }
 
@@ -150,7 +202,7 @@ export class Theme implements Serializable {
    * @param json A json object.
    */
   constructor(json: any) {
-    this.id = ThemeUtils.randomThemeId();
+    this._id = ThemeUtils.randomThemeId();
     this.fromJson(json);
   }
 }

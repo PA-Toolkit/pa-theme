@@ -66,3 +66,7 @@ console.log(
     ? "Test passed!"
     : "Test failed!"
 );
+
+console.log(theme.background);
+theme.background = "#FFFFFF";
+console.log(theme.background);

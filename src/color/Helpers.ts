@@ -6,7 +6,7 @@ import { RGB, HSL } from "./ColorSpaces";
  * @param color A RGB or HSL object or a Hex string.
  * @returns A new color.
  */
-export function CreateColor(color: RGB | HSL | string): Color {
+export function CreateColor(color: RGB | HSL | string | Color): Color {
   return new Color(color);
 }
 
@@ -15,6 +15,8 @@ export function CreateColor(color: RGB | HSL | string): Color {
  * @param colors An array of RGB or HSL objects or Hex strings.
  * @returns A new array of colors.
  */
-export function CreateColors(...colors: (RGB | HSL | string)[]): Color[] {
+export function CreateColors(
+  ...colors: (RGB | HSL | string | Color)[]
+): Color[] {
   return colors.map(CreateColor);
 }

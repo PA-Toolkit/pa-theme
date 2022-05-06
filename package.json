@@ -1,11 +1,12 @@
 {
   "name": "pa-theme",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Creates and edits Project Arrhythmia themes.",
   "main": "build/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c",
+    "watch": "rollup -cw",
     "test": "node test/test.js",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""

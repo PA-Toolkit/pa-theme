@@ -66,5 +66,3 @@ console.log(
     ? "Test passed!"
     : "Test failed!"
 );
-
-console.log(CreateTheme({ name: "Test", gui: "7F7F7F" }));

@@ -32,7 +32,7 @@ const theme = CreateTheme({
 });
 
 // Change theme's background color.
-theme.background = CreateColor("#000");
+theme.background = "#000";
 
 // Change objects colors.
 theme.objects = CreateColors(
@@ -66,7 +66,3 @@ console.log(
     ? "Test passed!"
     : "Test failed!"
 );
-
-console.log(theme.background);
-theme.background = "#FFFFFF";
-console.log(theme.background);

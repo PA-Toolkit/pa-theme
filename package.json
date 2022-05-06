@@ -43,6 +43,6 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "pa-common": "^1.0.0"
+    "pa-common": "^1.1.3"
   }
 }

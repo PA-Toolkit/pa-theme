@@ -136,7 +136,7 @@ export class Theme implements Serializable {
 
     if (json.bg !== undefined && json.background !== undefined) {
       throw new ThemeParseError(
-        `Theme has both bg and background fields: ${json.bg}, ${json.background}`
+        `The object has both bg and background fields: ${json.bg}, ${json.background}`
       );
     }
 
@@ -156,7 +156,7 @@ export class Theme implements Serializable {
 
     if (json.objs !== undefined && json.objects !== undefined) {
       throw new ThemeParseError(
-        `Theme has both objs and objects fields: ${json.objs}, ${json.objects}`
+        `The object has both objs and objects fields: ${json.objs}, ${json.objects}`
       );
     }
 
@@ -174,7 +174,7 @@ export class Theme implements Serializable {
 
     if (json.bgs !== undefined && json.backgroundObjects !== undefined) {
       throw new ThemeParseError(
-        `Theme has both bgs and backgroundObjects fields: ${json.bgs}, ${json.backgroundObjects}`
+        `The object has both bgs and backgroundObjects fields: ${json.bgs}, ${json.backgroundObjects}`
       );
     }
 

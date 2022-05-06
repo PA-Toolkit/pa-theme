@@ -5,15 +5,32 @@ export interface RGB {
   /**
    * Red property of RGB.
    */
-  red: number;
+  red?: number;
+
+  /**
+   * Red property of RGB.
+   */
+  r?: number;
+
   /**
    * Green property of RGB.
    */
-  green: number;
+  green?: number;
+
+  /**
+   * Green property of RGB.
+   */
+  g?: number;
+
   /**
    * Blue property of RGB.
    */
-  blue: number;
+  blue?: number;
+
+  /**
+   * Blue property of RGB.
+   */
+  b?: number;
 }
 
 /**
@@ -23,13 +40,30 @@ export interface HSL {
   /**
    * Hue property of HSL.
    */
-  hue: number;
+  hue?: number;
+
+  /**
+   * Hue property of HSL.
+   */
+  h?: number;
+
   /**
    * Saturation property of HSL.
    */
-  saturation: number;
+  saturation?: number;
+
+  /**
+   * Saturation property of HSL.
+   */
+  s?: number;
+
   /**
    * Lightness property of HSL.
    */
-  lightness: number;
+  lightness?: number;
+
+  /**
+   * Lightness property of HSL.
+   */
+  l?: number;
 }

@@ -21,9 +21,65 @@ export class Color {
   }
 
   public set rgb(rgb: RGB) {
-    this.red = ThemeUtils.clamp(rgb.red, 0, 255);
-    this.green = ThemeUtils.clamp(rgb.green, 0, 255);
-    this.blue = ThemeUtils.clamp(rgb.blue, 0, 255);
+    if (rgb.red === undefined && rgb.r === undefined) {
+      throw new ColorParseError(
+        `The object doesn't have r or red field: ${rgb}`
+      );
+    }
+
+    if (rgb.red !== undefined && rgb.r !== undefined) {
+      throw new ColorParseError(
+        `The object has both r and red fields: ${rgb.r} ${rgb.red}`
+      );
+    }
+
+    if (rgb.red !== undefined) {
+      this.red = rgb.red;
+    }
+
+    if (rgb.r !== undefined) {
+      this.red = rgb.r;
+    }
+
+    if (rgb.green === undefined && rgb.g === undefined) {
+      throw new ColorParseError(
+        `The object doesn't have g or green field: ${rgb}`
+      );
+    }
+
+    if (rgb.green !== undefined && rgb.g !== undefined) {
+      throw new ColorParseError(
+        `The object has both g and green fields: ${rgb.g} ${rgb.green}`
+      );
+    }
+
+    if (rgb.green !== undefined) {
+      this.green = rgb.green;
+    }
+
+    if (rgb.g !== undefined) {
+      this.green = rgb.g;
+    }
+
+    if (rgb.blue === undefined && rgb.b === undefined) {
+      throw new ColorParseError(
+        `The object doesn't have b or blue field: ${rgb}`
+      );
+    }
+
+    if (rgb.blue !== undefined && rgb.b !== undefined) {
+      throw new ColorParseError(
+        `The object has both b and blue fields: ${rgb.b} ${rgb.blue}`
+      );
+    }
+
+    if (rgb.blue !== undefined) {
+      this.blue = rgb.blue;
+    }
+
+    if (rgb.b !== undefined) {
+      this.blue = rgb.b;
+    }
   }
 
   /**
@@ -67,7 +123,70 @@ export class Color {
   }
 
   public set hsl(hsl: HSL) {
-    this.rgb = ColorUtils.hslToRgb(hsl);
+    // this.rgb = ColorUtils.hslToRgb(hsl);
+    const obj: HSL = {};
+
+    if (hsl.hue === undefined && hsl.h === undefined) {
+      throw new ColorParseError(
+        `The object doesn't have h or hue field: ${hsl}`
+      );
+    }
+
+    if (hsl.hue !== undefined && hsl.h !== undefined) {
+      throw new ColorParseError(
+        `The object has both h and hue fields: ${hsl.h} ${hsl.hue}`
+      );
+    }
+
+    if (hsl.hue !== undefined) {
+      obj.hue = hsl.hue;
+    }
+
+    if (hsl.h !== undefined) {
+      obj.hue = hsl.h;
+    }
+
+    if (hsl.saturation === undefined && hsl.s === undefined) {
+      throw new ColorParseError(
+        `The object doesn't have s or saturation field: ${hsl}`
+      );
+    }
+
+    if (hsl.saturation !== undefined && hsl.s !== undefined) {
+      throw new ColorParseError(
+        `The object has both s and saturation fields: ${hsl.s} ${hsl.saturation}`
+      );
+    }
+
+    if (hsl.saturation !== undefined) {
+      obj.saturation = hsl.saturation;
+    }
+
+    if (hsl.s !== undefined) {
+      obj.saturation = hsl.s;
+    }
+
+    if (hsl.lightness === undefined && hsl.l === undefined) {
+      throw new ColorParseError(
+        `The object doesn't have l or lightness field: ${hsl}`
+      );
+    }
+
+    if (hsl.lightness !== undefined && hsl.l !== undefined) {
+      throw new ColorParseError(
+        `The object has both l and lightness fields: ${hsl.l} ${hsl.lightness}`
+      );
+    }
+
+    if (hsl.lightness !== undefined) {
+      obj.lightness = hsl.lightness;
+    }
+
+    if (hsl.l !== undefined) {
+      obj.lightness = hsl.l;
+    }
+
+    this.rgb = ColorUtils.hslToRgb(obj);
   }
 
   /**
@@ -135,9 +254,9 @@ export class Color {
   constructor(color: any) {
     if (typeof color === "string") {
       this.hex = color;
-    } else if ("red" in color) {
+    } else if ("red" in color || "r" in color) {
       this.rgb = color;
-    } else if ("hue" in color) {
+    } else if ("hue" in color || "h" in color) {
       this.hsl = color;
     } else {
       throw new ColorParseError(`Invalid color: ${color}`);

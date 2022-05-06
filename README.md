@@ -55,6 +55,13 @@ const theme = CreateTheme({
 ```js
 const theme = CreateTheme({
   gui: "#FFFFFF",
+  bg: {
+    red: 0,
+    green: 0,
+    blue: 0,
+  },
+
+  // OR
   background: {
     red: 0,
     green: 0,
@@ -63,7 +70,7 @@ const theme = CreateTheme({
 });
 ```
 
-NOTE: You can only use either short or long property (e.g. either `bg` or `background`) in a single constructor object.
+NOTE: You can only use either short or long name for a certain property (e.g. either `bg` or `background`) in a single constructor object.
 
 ### Creating a color
 
@@ -83,6 +90,11 @@ const color = CreateColor("FFFFFF");
 const color = CreateColor({
   red: 255,
   green: 255,
+  blue: 255,
+
+  // OR
+  r: 255,
+  g: 255,
   blue: 255,
 });
 ```
@@ -112,6 +124,8 @@ const colors = CreateColors(
 );
 ```
 
+NOTE: You can only use either short or long name for a certain property (e.g. either `green` or `g`) in a single constructor object.
+
 ### Working with the theme
 
 Setting the theme's name
@@ -120,11 +134,30 @@ Setting the theme's name
 theme.name = "Theme";
 ```
 
-Setting the theme's colors
+Setting the theme's colors:
+
+- Using helper functions
 
 ```js
 theme.gui = CreateColor("#FFFFFF");
+theme.gui = CreateColor({
+  red: 0,
+  green: 0,
+  blue: 0,
+});
 theme.objects = CreateColors("#ff0000", "#ffa200", "#bfff00", ... );
+```
+
+- Directly
+
+```js
+theme.gui = "#FFFFFF";
+theme.gui = {
+  red: 0,
+  green: 0,
+  blue: 0,
+};
+theme.objects = ["#ff0000", "#ffa200", "#bfff00", ... ];
 ```
 
 ### Working with the color

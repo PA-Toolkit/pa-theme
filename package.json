@@ -1,6 +1,6 @@
 {
   "name": "pa-theme",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Creates and edits Project Arrhythmia themes.",
   "main": "build/index.js",
   "scripts": {

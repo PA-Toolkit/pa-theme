@@ -16,7 +16,7 @@
 
 > Creates and edits Project Arrhythmia themes.
 
-### 🏠 [Homepage](https://github.com/enchart/pa-prefab)
+### 🏠 [Homepage](https://github.com/enchart/pa-theme)
 
 ## Install
 
@@ -238,7 +238,7 @@ const theme = CreateThemeFromJson(json);
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/enchart/pa-prefab/issues).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/enchart/pa-theme/issues).
 
 ## Show your support
 

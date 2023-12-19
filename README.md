@@ -63,10 +63,24 @@ const theme = CreateTheme({
 
 Setting the theme's properties
 
-```js
-theme.id = "573168"; // MUST be unique
-theme.name = "Theme";
+- Theme's ID (MUST be a unique 6 digit numeric string)
 
+```js
+theme.id = "573168";
+```
+
+- You can also use a helper function
+
+```js
+import { ThemeUtils } from "pa-theme";
+// ...
+theme.id = ThemeUtils.randomThemeId();
+```
+
+- Setting other properties
+
+```js
+theme.name = "Theme";
 theme.gui = "#FFFFFF";
 theme.objects = ["#ff0000", "#ffa200", "#bfff00" /* ... */];
 ```

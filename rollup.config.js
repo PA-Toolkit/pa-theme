@@ -1,6 +1,6 @@
 import ts from "rollup-plugin-ts";
 import del from "rollup-plugin-delete";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 const production = process.env.BUILD === "production";
 

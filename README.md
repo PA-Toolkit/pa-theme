@@ -27,11 +27,11 @@ npm install pa-theme
 ## Usage
 
 ```js
-import { CreateTheme, CreateColor, ... } from "pa-theme";
+import { Theme } from "pa-theme";
 ```
 
 ```js
-const { CreateTheme, CreateColor, ... } = require("pa-theme");
+const { Theme } = require("pa-theme");
 ```
 
 ### Creating a theme
@@ -41,12 +41,12 @@ You can create a theme:
 - With default colors
 
 ```js
-const theme = CreateTheme("Theme");
+const theme = New Theme();
 ```
 
 ```js
 const theme = CreateTheme({
-  name: "Theme",
+  name: "Theme name",
 });
 ```
 
@@ -55,162 +55,34 @@ const theme = CreateTheme({
 ```js
 const theme = CreateTheme({
   gui: "#FFFFFF",
-  bg: {
-    red: 0,
-    green: 0,
-    blue: 0,
-  },
-
-  // OR
-  background: {
-    red: 0,
-    green: 0,
-    blue: 0,
-  },
+  background: "#7F7F7F",
 });
 ```
-
-NOTE: You can only use either short or long name for a certain property (e.g. either `bg` or `background`) in a single constructor object.
-
-### Creating a color
-
-You can create a color from:
-
-- A Hex string
-
-```js
-const color = CreateColor("#FFFFFF");
-const color = CreateColor("#fff");
-const color = CreateColor("FFFFFF");
-```
-
-- A RGB object
-
-```js
-const color = CreateColor({
-  red: 255,
-  green: 255,
-  blue: 255,
-
-  // OR
-  r: 255,
-  g: 255,
-  blue: 255,
-});
-```
-
-- A HSL object
-
-```js
-const color = CreateColor({
-  hue: 0,
-  saturation: 0,
-  lightness: 100,
-});
-```
-
-Creating multiple colors:
-
-```js
-const colors = CreateColors(
-  "#FFFFFF",
-  "fff",
-  {
-    red: 255,
-    green: 255,
-    blue: 255,
-  },
-  ...
-);
-```
-
-NOTE: You can only use either short or long name for a certain property (e.g. either `green` or `g`) in a single constructor object.
 
 ### Working with the theme
 
-Setting the theme's name
+Setting the theme's properties
+
+- Theme's ID (MUST be a unique 6 digit numeric string)
+
+```js
+theme.id = "573168";
+```
+
+- You can also use a helper function
+
+```js
+import { ThemeUtils } from "pa-theme";
+// ...
+theme.id = ThemeUtils.randomThemeId();
+```
+
+- Setting other properties
 
 ```js
 theme.name = "Theme";
-```
-
-Setting the theme's colors:
-
-- Using helper functions
-
-```js
-theme.gui = CreateColor("#FFFFFF");
-theme.gui = CreateColor({
-  red: 0,
-  green: 0,
-  blue: 0,
-});
-theme.objects = CreateColors("#ff0000", "#ffa200", "#bfff00", ... );
-```
-
-- Directly
-
-```js
 theme.gui = "#FFFFFF";
-theme.gui = {
-  red: 0,
-  green: 0,
-  blue: 0,
-};
-theme.objects = ["#ff0000", "#ffa200", "#bfff00", ... ];
-```
-
-### Working with the color
-
-Setting the color's RGB values.
-
-```js
-color.red = 255;
-color.rgb = {
-  red: 255,
-  green: 255,
-  blue: 255,
-};
-```
-
-Setting the color's HSL values.
-
-```js
-color.hue = 0;
-color.hsl = {
-  hue: 0,
-  saturation: 0,
-  value: 100,
-};
-```
-
-Setting the color's Hex string.
-
-```js
-color.hex = "#FFFFFF";
-```
-
-Getting the color's Hex string.
-
-```js
-color.hex; // "FFFFFF"
-color.toString(); // "#FFFFFF"
-```
-
-Converting colors:
-
-```js
-const { ColorUtils } = require("pa-theme");
-const rgb = {
-  r: 255,
-  g: 255,
-  b: 255,
-};
-const hsl = ColorUtils.rgbToHsl(rgb);
-const newRgb = ColorUtils.hslToRgb(hsl);
-
-rgb; // { r: 255, g: 255, b: 255 }
-newRgb; // { r: 255, g: 255, b: 255 }
+theme.objects = ["#ff0000", "#ffa200", "#bfff00" /* ... */];
 ```
 
 ### Building the theme
@@ -228,12 +100,12 @@ fs.writeFileSync("theme.lst", theme.toString());
 You can read an existing theme from the string/object.
 
 ```js
-const { CreateThemeFromJson } = require("pa-theme");
 const fs = require("fs");
 
 const jsonString = fs.readFileSync("theme.lst");
 const json = JSON.parse(jsonString);
-const theme = CreateThemeFromJson(json);
+const theme = new Theme();
+theme.fromJson(json);
 ```
 
 ## 🤝 Contributing
@@ -246,7 +118,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2022 [PA Toolkit](https://github.com/pa-toolkit).<br />
+Copyright © 2023 [PA Toolkit](https://github.com/pa-toolkit).<br />
 This project is [MIT](https://github.com/enchart/pa-theme/blob/master/LICENSE) licensed.
 
 ---
